@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100svh;
+  max-height: 95svh;
   padding: 40px;
   font-family: var(--font-geist-sans);
   background-color: var(--background);
