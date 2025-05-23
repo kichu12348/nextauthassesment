@@ -1,5 +1,5 @@
-'use client';
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { CssBaseline, Typography, Box, Button } from "@mui/material";
 import GoogleAuth from "./lib/googleAuth";
@@ -8,10 +8,12 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  const handleAuth= (userData) => {
+  const handleAuth = (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
-    window.ReactNativeWebView?.postMessage(JSON.stringify({ uid: userData?.uid,data: userData }));
+    window.ReactNativeWebView?.postMessage(
+      JSON.stringify({ uid: userData?.uid, data: userData,type:"notification" })
+    );
   };
 
   const handleSignOut = () => {
@@ -22,18 +24,11 @@ function App() {
   if (isAuthenticated) {
     return (
       <Box className={styles.glassCard}>
-        <Typography 
-          variant="h4" 
-          className={styles.title} 
-          gutterBottom
-        >
+        <Typography variant="h4" className={styles.title} gutterBottom>
           Successfully Logged In!
         </Typography>
-        <Typography 
-          variant="body1" 
-          className={styles.subtitle}
-        >
-          Welcome, {user?.displayName || 'User'}!
+        <Typography variant="body1" className={styles.subtitle}>
+          Welcome, {user?.displayName || "User"}!
         </Typography>
         <div className={styles.authButton}>
           <Button
@@ -64,17 +59,10 @@ function App() {
 
   return (
     <Box className={styles.glassCard}>
-      <Typography 
-        variant="h4" 
-        className={styles.title} 
-        gutterBottom
-      >
+      <Typography variant="h4" className={styles.title} gutterBottom>
         Welcome to NextExpoAuth
       </Typography>
-      <Typography 
-        variant="body1" 
-        className={styles.subtitle}
-      >
+      <Typography variant="body1" className={styles.subtitle}>
         Sign in to your account to continue
       </Typography>
       <div className={styles.authButton}>
