@@ -21,7 +21,7 @@ body {
   overflow-x: hidden;
   background-image: var(--bg-gradient);
   color: var(--text-primary);
-  max-height: 95svh;
+  min-height: 100svh;
 }
 
 /* Customized scrollbar */
