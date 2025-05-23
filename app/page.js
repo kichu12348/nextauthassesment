@@ -11,6 +11,7 @@ function App() {
   const handleAuth= (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
+    window.ReactNativeWebView?.postMessage(JSON.stringify({ uid: userData?.uid,data: userData }));
   };
 
   const handleSignOut = () => {
